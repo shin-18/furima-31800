@@ -5,6 +5,8 @@
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | encrypted_password | string | null: false |
+| email              | string | null: false |
+| nickname           | string | null: false |
 | surname            | string | null: false |
 | name               | string | null: false |
 | surname_kana       | string | null: false |
@@ -33,7 +35,7 @@
    Association
 
 - belongs_to :user
-- has_many :purchases
+- has_one :purchase
 
 
    purchases テーブル
