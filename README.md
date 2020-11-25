@@ -2,13 +2,17 @@
 
    users テーブル
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| nickname | string | null: false |
-| email    | string | null: false |
-| password | string | null: false |
-| name     | string | null: false |
-| birthday | date   | null: false |
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false |
+| password           | string | null: false |
+| encrypted_password | string | null: false |
+| surname            | string | null: false |
+| name               | string | null: false |
+| surname_kana       | string | null: false |
+| name_kana          | string | null: false |
+| birthday           | date   | null: false |
 
    Association
 
@@ -19,14 +23,14 @@
 
 | Column       | Type       | Options                        |
 | -------------| -----------| ------------------------------ |
-| product_name | string     | null: false                    |
-| explanation  | text       | null: false                    |
-| category     | string     | null: false                    |
-| status       | string     | null: false                    |
-| delivery_fee | string     | null: false                    |
-| area         | string     | null: false                    |
-| days         | string     | null: false                    |
-| price        | integer    | null: false                    | 
+| product_name_id | integer     | null: false                    |
+| explanation_id  | integer     | null: false                    |
+| category_id     | integer     | null: false                    |
+| status_id       | integer     | null: false                    |
+| delivery_fee_id | integer     | null: false                    |
+| area_id         | integer     | null: false                    |
+| days_id         | integer     | null: false                    |
+| price_id        | integer     | null: false                    | 
 | user         | references | null: false, foreign_key: true |
 
    Association
@@ -39,7 +43,6 @@
 
 | Column          | Type       | Options                        |
 | ----------------| -----------| ------------------------------ |
-| card            | integer    | null: false                    |
 | validity_period | integer    | null: false                    |
 | security        | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
@@ -55,12 +58,12 @@
 
 | Column          | Type       | Options                        |
 | ----------------| -----------| ------------------------------ |
-| postal_code     | integer    | null: false                    |
-| prefectures     | string     | null: false                    |
+| postal_code     | string     | null: false                    |
+| prefectures_id  | integer    | null: false                    |
 | city            | string     | null: false                    |
 | address         | string     | null: false                    |
-| building        | string     | null: false                    |
-| phone           | integer    | null: false                    |
+| building        | string     |                     |
+| phone           | string     | null: false                    |
 | purchase        | references | null: false, foreign_key: true |
 
    Association
