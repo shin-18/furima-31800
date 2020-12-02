@@ -7,10 +7,12 @@ class User < ApplicationRecord
  with_options presence: true do
   validates :nickname
   validates :email, uniqueness: { case_sensitive: true }
+  VALID_PASSWORD_REGEX =/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i
+  validates :password, format: { with: VALID_PASSWORD_REGEX}
   VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/
-  validates :surname, :name, format: { with: VALID_NAME_REGEX, message: "は全角で入力してください" }
+  validates :surname, :name, format: { with: VALID_NAME_REGEX}
   VALID_KANA_NAME_REGEX = /\A[ァ-ヶー－]+\z/
-  validates :surname_kana, :name_kana, format: { with: VALID_KANA_NAME_REGEX, message: "は全角カナで入力してください" }
+  validates :surname_kana, :name_kana, format: { with: VALID_KANA_NAME_REGEX}
   validates :birthday_id
  end
 
