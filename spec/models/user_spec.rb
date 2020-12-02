@@ -6,11 +6,25 @@ end
 require 'rails_helper'
 describe User do
   describe '#create' do
+  before do
+    @user = FactoryBot.build(:user)
+  end
+    it "nicknameとemail、passwordとpassword_confirmation、surname、name、surname_kana、name_kana、birthday_idが存在すれば登録できること" do
+      user = build(:user)
+      expect(user).to be_valid
+    end
+
     it "ニックネームが空だと登録できない" do
       user = build(:user, nickname: "")
       user.valid?
       expect(user.errors[:nickname]).to include("を入力してください")
     end
+
+    it "重複したemailが存在する場合登録できないこと" do
+      user = create(:user)
+      another_user = build(:user)
+      another_user.valid?
+      expect(another_user.errors[:email]).to include("すでに存在しています")
 
     it "メールアドレスが空だと登録できない" do
       user = build(:user, email: "")
@@ -93,5 +107,11 @@ describe User do
       user.valid?
       expect(user.errors[:name_kana]).to include("は全角カナで入力してください")
     end
+  end
+
+  it "birthdayがない場合は登録できないこと" do
+    user = build(:user, birthday_id: nil)
+    user.valid?
+    expect(user.errors[:birthday_id]).to include("を入力してください")
   end
 end
